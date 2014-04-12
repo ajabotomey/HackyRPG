@@ -15,12 +15,11 @@ namespace HackyRPG
         private ContentManager contentManager;
         private SpriteSheet groundSprites;
 
-        private int[][] level;
         int rows, columns;
 
         private List<Tile> tileMap;
 
-        public Level(Game game)
+        public Level(Game game, string filePath)
         {
             contentManager = new ContentManager(game.Services);
             contentManager.RootDirectory = "Content";
@@ -29,13 +28,13 @@ namespace HackyRPG
             tileMap = new List<Tile>();
 
             // Now load in the level file
-            LoadLevel();
+            LoadLevel(filePath);
         }
 
-        public void LoadLevel()
+        public void LoadLevel(string filePath)
         {
             // Loading the level through XML
-            FileStream fileStream = File.Open(contentManager.RootDirectory + "/Levels/test_level.xml", FileMode.Open);
+            FileStream fileStream = File.Open(contentManager.RootDirectory + "/" + filePath, FileMode.Open);
             StreamReader fileStreamReader = new StreamReader(fileStream);
             string xml = fileStreamReader.ReadToEnd();
             fileStreamReader.Close();

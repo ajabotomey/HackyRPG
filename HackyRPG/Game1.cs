@@ -63,7 +63,7 @@ namespace HackyRPG
             // Create our objects
             player = new Player(playerSprite, 200, 200);
 
-            testLevel = new Level(this);
+            testLevel = new Level(this, "Levels/test_level.xml");
         }
 
         /// <summary>
