@@ -34,12 +34,15 @@ namespace HackyRPG
         public void LoadLevel(string filePath)
         {
             // Loading the level through XML
-            FileStream fileStream = File.Open(contentManager.RootDirectory + "/" + filePath, FileMode.Open);
-            StreamReader fileStreamReader = new StreamReader(fileStream);
-            string xml = fileStreamReader.ReadToEnd();
-            fileStreamReader.Close();
-            fileStream.Close();
-            XDocument doc = XDocument.Parse(xml);
+            //FileStream fileStream = File.Open(contentManager.RootDirectory + "/" + filePath, FileMode.Open);
+            //StreamReader fileStreamReader = new StreamReader(fileStream);
+            //string xml = fileStreamReader.ReadToEnd();
+            //fileStreamReader.Close();
+            //fileStream.Close();
+            //XDocument doc = XDocument.Parse(xml);
+
+            // XDocument doc = XDocument.Load("Application/" + contentManager.RootDirectory + "/" + filePath); // Vita version
+            XDocument doc = XDocument.Load(contentManager.RootDirectory + "/" + filePath);
             
             // Now to get the raw data from the XML file
 
@@ -99,7 +102,7 @@ namespace HackyRPG
 
         public void UnloadLevel()
         {
-
+            contentManager.Unload();
         }
 
         public void Draw(SpriteBatch spriteBatch)

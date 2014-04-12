@@ -8,8 +8,7 @@ namespace HackyRPG
 {
     public class Player:GameObject
     {
-        private GamePadState currentGamePadState;
-        private KeyboardState lastKeyboardState;
+        private GamePadState currentGamePadState = GamePad.GetState(PlayerIndex.One); // So it runs on Vita
         private KeyboardState currentKeyboardState;
         private Vector2 velocity = Vector2.Zero;
         private const float speed = 32.0f;
@@ -53,7 +52,6 @@ namespace HackyRPG
 
         private void HandleKeyboardInput()
         {
-            lastKeyboardState = Keyboard.GetState();
             currentKeyboardState = Keyboard.GetState();
 
             if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
