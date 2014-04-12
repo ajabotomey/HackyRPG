@@ -88,15 +88,12 @@ namespace HackyRPG
                 // Start reading the map
                 string text = gridRows[j];
                 string[] bits = text.Split(' ');
-                Console.WriteLine("Size of line is {0}", bits.Length);
 
                 for (int k = 0; k < bits.Length; k++)
                 {
                     Tile newTile = new Tile(j, k, int.Parse(bits[k]));
                     tileMap.Add(newTile);
                 }
-
-                Console.WriteLine("");
             }
         }
 

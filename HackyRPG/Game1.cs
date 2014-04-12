@@ -22,11 +22,6 @@ namespace HackyRPG
         private Player player;
         private Level testLevel;
 
-        //public enum TileName : int
-        //{
-        //       Grass = 0
-        //}
-
         public Game1()
             : base()
         {
@@ -105,15 +100,7 @@ namespace HackyRPG
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            //spriteBatch.Draw(background, new Rectangle(0, 0, 800, 600), Color.White);
-            //grassTile.Draw(spriteBatch);
-            //int reference = (int)TileName.Grass;
-            //Rectangle source;
-            //groundTiles.GetRectangle(ref reference, out source);
-            //spriteBatch.Draw(groundTiles.Texture, new Vector2(0, 0), source, Color.White);
-
             testLevel.Draw(spriteBatch);
-
             player.Draw(spriteBatch);
 
             spriteBatch.End();
