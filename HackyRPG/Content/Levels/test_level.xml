@@ -1,0 +1,40 @@
+<?xml version ="1.0"?>
+<level>
+	<!-- Tiles used and their cost -->
+	<spritesheet file="Sprites/Tiles">
+		<sprite name="grass">
+			<x>32</x>
+			<y>0</y>
+			<width>32</width>
+			<height>32</height>
+			<value number = "0" />
+			<heuristic cost = "1" />
+		</sprite>
+		<sprite name="water">
+			<x>128</x>
+			<y>0</y>
+			<width>32</width>
+			<height>32</height>
+			<value number = "1" />
+			<heuristic cost = "1000" />
+		</sprite>
+	</spritesheet>
+	<size>
+		<width>14</width>
+		<height>4</height>
+	</size>
+	<grid>
+		<row value="0 1 1 1 0 1 0 0 0 1 1 1 1 1" />
+		<row value="0 1 1 1 0 1 0 0 0 0 0 0 1 1" />
+		<row value="1 1 1 1 1 1 1 1 1 1 0 0 1 1" />
+		<row value="0 0 0 0 0 0 0 0 0 0 0 0 0 0" />
+	</grid>
+	<tile>
+		<position>
+			<x>0</x>
+			<y>0</y>
+		</position>
+		<sprite name = "grass" />
+		<heuristic cost = "1" />
+	</tile>
+</level>
