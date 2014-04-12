@@ -51,7 +51,7 @@ namespace HackyRPG
             spriteBatch.Draw(sprite, BoundBox, Color.White);
         }
 
-        public bool AABBCollisionText(GameObject gameObject)
+        public bool AABBCollisionTest(GameObject gameObject)
         {
             
 

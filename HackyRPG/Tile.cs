@@ -16,6 +16,8 @@ namespace HackyRPG
         private int heuristicCost;
         private Vector2 location;
         private TileName tileValue;
+        private const int tileSize = 32;
+        private bool collidable;
 
         public int TileValue
         {
@@ -30,16 +32,35 @@ namespace HackyRPG
             }
         }
 
+        public Rectangle BoundBox
+        {
+            get
+            {
+                return new Rectangle((int)location.X, (int)location.Y, tileSize, tileSize);
+            }
+        }
+
         public Tile(int x, int y, int tileType)
         {
             tileValue = (TileName)Enum.ToObject(typeof(TileName), tileType);
 
             if (tileValue == TileName.Water)
+            {
                 heuristicCost = 100;
+                collidable = true;
+            }
             else
+            {
                 heuristicCost = 1;
+                collidable = false;
+            }
 
             location = new Vector2(y * 32, x * 32);
+        }
+
+        public TileName GetTileValue()
+        {
+            return tileValue;
         }
 
         public int GetCost()

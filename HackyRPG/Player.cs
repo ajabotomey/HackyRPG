@@ -11,9 +11,22 @@ namespace HackyRPG
         private GamePadState currentGamePadState = GamePad.GetState(PlayerIndex.One); // So it runs on Vita
         private KeyboardState currentKeyboardState;
         private Vector2 velocity = Vector2.Zero;
-        private const float speed = 32.0f;
+        private const float speed = 2.0f;
         private const float tileSize = 32.0f;
         private float distance;
+
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+
+            set
+            {
+                velocity = value;
+            }
+        }
 
         public Player(Texture2D texture, int x, int y):base(texture)
         {
@@ -22,18 +35,22 @@ namespace HackyRPG
             name = "Player";
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Level level)
         {
             HandleInput();
 
             // Update Position
-            position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position += velocity;
 
-            // Tile Collision first
+            CollidesTile(level);
 
-            // Handle Collisions
+            // Handle Collisions - Tile Collision is handled in the Tile Class
 
-            Console.WriteLine("Player Position is at {0},{1}", position.X, position.Y);
+            //Console.WriteLine("Player Position is at {0},{1}", position.X, position.Y);
+
+            position.X = (float)Math.Round(position.X);
+            position.Y = (float)Math.Round(position.Y);
 
             // Must be cleared or else the player will keep moving even though a key has not been pressed
             velocity = Vector2.Zero;
@@ -105,9 +122,18 @@ namespace HackyRPG
             
         }
 
-        public void CollideWithTile()
+        public void CollidesTile(Level level)
         {
-            // Get the tile position and check collisions within 1 tile of the current position
+            foreach (Tile t in level.TileMap)
+            {
+                if (BoundBox.Intersects(t.BoundBox))
+                {
+                    if (t.GetTileValue() == TileName.Water)
+                    {
+                        position -= velocity;
+                    }
+                }
+            }
         }
 
         public void SnapToGrid()

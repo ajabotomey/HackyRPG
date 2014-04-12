@@ -19,6 +19,14 @@ namespace HackyRPG
 
         private List<Tile> tileMap;
 
+        public List<Tile> TileMap
+        {
+            get
+            {
+                return tileMap;
+            }
+        }
+
         public Level(Game game, string filePath)
         {
             contentManager = new ContentManager(game.Services);
@@ -98,6 +106,11 @@ namespace HackyRPG
                     tileMap.Add(newTile);
                 }
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            
         }
 
         public void UnloadLevel()
