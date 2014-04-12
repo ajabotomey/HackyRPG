@@ -15,23 +15,41 @@ namespace HackyRPG
     {
         private int heuristicCost;
         private Vector2 location;
-        private TileName value;
+        private TileName tileValue;
 
-        public Tile(int x, int y, int tileValue)
+        public int TileValue
         {
-            value = (TileName)Enum.ToObject(typeof(TileName), tileValue);
+            get
+            {
+                return (int)tileValue;
+            }
 
-            if (value == TileName.Water)
+            set
+            {
+                tileValue = (TileName)Enum.ToObject(typeof(TileName), value);
+            }
+        }
+
+        public Tile(int x, int y, int tileType)
+        {
+            tileValue = (TileName)Enum.ToObject(typeof(TileName), tileType);
+
+            if (tileValue == TileName.Water)
                 heuristicCost = 100;
             else
                 heuristicCost = 1;
 
-            location = new Vector2(x, y);
+            location = new Vector2(y * 32, x * 32);
         }
 
         public int GetCost()
         {
             return heuristicCost;
+        }
+
+        public void Draw(Texture2D texture, Rectangle source, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, location, source, Color.White);
         }
     }
 }

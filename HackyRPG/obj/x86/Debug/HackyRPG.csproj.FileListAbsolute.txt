@@ -13,3 +13,18 @@ C:\Users\AJ\Documents\Visual Studio 2010\Projects\HackyRPG\HackyRPG\bin\WindowsG
 C:\Users\AJ\Documents\Visual Studio 2010\Projects\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Sprites\Tiles.xnb
 C:\Users\AJ\Documents\Visual Studio 2010\Projects\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Levels\test_level.txt
 C:\Users\AJ\documents\visual studio 2010\Projects\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Levels\test_level.xml
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\obj\x86\Debug\HackyRPG.exe
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\obj\x86\Debug\HackyRPG.pdb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\SDL.dll
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Levels\test_level.txt
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Levels\test_level.xml
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Background\grass.xnb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Sprites\Player.xnb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Sprites\Tiles.xnb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\HackyRPG.exe
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\HackyRPG.pdb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Lidgren.Network.dll
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Tao.Sdl.dll
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\obj\x86\Debug\ResolveAssemblyReference.cache

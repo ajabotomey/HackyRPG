@@ -25,12 +25,6 @@ namespace HackyRPG
             contentManager = new ContentManager(game.Services);
             contentManager.RootDirectory = "Content";
 
-            //// Load in the spritesheets
-            //Texture2D groundFile = contentManager.Load<Texture2D>("Sprites/Tiles");
-            //groundSprites = new SpriteSheet(groundFile);
-            //groundSprites.AddSourceSprite((int)TileName.Grass, new Rectangle(32, 0, 32, 32));
-            //groundSprites.AddSourceSprite((int)TileName.Water, new Rectangle(128, 0, 32, 32));
-
             // Create the tile map
             tileMap = new List<Tile>();
 
@@ -40,44 +34,6 @@ namespace HackyRPG
 
         public void LoadLevel()
         {
-            //using (TextReader reader = File.OpenText("Content/Levels/test_level.txt"))
-            //{
-            //    string sizeText = reader.ReadLine();
-            //    string[] size = sizeText.Split(' ');
-
-            //    columns = int.Parse(size[0]);
-            //    rows = int.Parse(size[1]);
-
-            //    level = new int[rows][];
-            //    for (int i = 0; i < rows; i++)
-            //    {
-            //        level[i] = new int[columns];
-            //    }
-
-            //    // Read the empty line
-            //    reader.ReadLine();
-
-            //    for (int j = 0; j < rows; j++)
-            //    {
-            //        // Start reading the map
-            //        string text = reader.ReadLine();
-            //        string[] bits = text.Split(' ');
-            //        Console.WriteLine("Size of line is {0}", bits.Length);
-            //        //Console.WriteLine("size of first row is: {0}", level[0].Length);
-
-            //        for (int k = 0; k < bits.Length; k++)
-            //        {
-            //            level[j][k] = int.Parse(bits[k]);
-            //            //Console.Write(level[j][k]);
-
-            //            Tile newTile = new Tile(j, k, level[j][k]);
-            //            tileMap.Add(newTile);
-            //        }
-
-            //        Console.WriteLine("");
-            //    }
-            //}
-
             // Loading the level through XML
             FileStream fileStream = File.Open(contentManager.RootDirectory + "/Levels/test_level.xml", FileMode.Open);
             StreamReader fileStreamReader = new StreamReader(fileStream);
@@ -86,7 +42,6 @@ namespace HackyRPG
             fileStream.Close();
             XDocument doc = XDocument.Parse(xml);
             
-
             // Now to get the raw data from the XML file
 
             // First the ground tile path
@@ -128,13 +83,6 @@ namespace HackyRPG
             groundSprites.AddSourceSprite((int)TileName.Grass, new Rectangle(grassX, grassY, grassWidth, grassHeight));
             groundSprites.AddSourceSprite((int)TileName.Water, new Rectangle(waterX, waterY, waterWidth, waterHeight));
 
-            // Now to create the level
-            level = new int[rows][];
-            for (int l = 0; l < rows; l++)
-            {
-                level[l] = new int[columns];
-            }
-
             // Time to populate with tiles
             for (int j = 0; j < rows; j++)
             {
@@ -142,14 +90,10 @@ namespace HackyRPG
                 string text = gridRows[j];
                 string[] bits = text.Split(' ');
                 Console.WriteLine("Size of line is {0}", bits.Length);
-                //Console.WriteLine("size of first row is: {0}", level[0].Length);
 
                 for (int k = 0; k < bits.Length; k++)
                 {
-                    level[j][k] = int.Parse(bits[k]);
-                    //Console.Write(level[j][k]);
-
-                    Tile newTile = new Tile(j, k, level[j][k]);
+                    Tile newTile = new Tile(j, k, int.Parse(bits[k]));
                     tileMap.Add(newTile);
                 }
 
@@ -164,15 +108,12 @@ namespace HackyRPG
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Draw each tile onto the screen from text file
-            for (int i = 0; i < rows; i++)
+            foreach (Tile t in tileMap)
             {
-                for (int j = 0; j < columns; j++)
-                {
-                    Rectangle source;
-                    groundSprites.GetRectangle(ref level[i][j], out source);
-                    spriteBatch.Draw(groundSprites.Texture, new Vector2(j * 32, i * 32), source, Color.White);
-                }
+                Rectangle source;
+                int tileValue = t.TileValue;
+                groundSprites.GetRectangle(ref tileValue, out source);
+                t.Draw(groundSprites.Texture, source, spriteBatch);
             }
         }
     }
