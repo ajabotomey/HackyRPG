@@ -6,13 +6,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HackyRPG
 {
-    public class Dudette : GameObject
+    // Example of a dynamic collision object
+    public class Dudette : DynamicObject
     {
-        public Dudette(Texture2D texture, int x, int y) : base(texture)
+        public Dudette(Texture2D texture, int x, int y) : base(texture, x, y)
         {
-            position.X = x;
-            position.Y = y;
             name = "Dudette";
+        }
+
+        public override void Update(GameTime gameTime, Level level)
+        {
+            base.Update(gameTime, level);
         }
     }
 }

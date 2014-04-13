@@ -19,7 +19,6 @@ namespace HackyRPG
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Player player;
         private Level testLevel;
 
         public Game1()
@@ -56,7 +55,7 @@ namespace HackyRPG
             Texture2D playerSprite = Content.Load<Texture2D>("Sprites/Player");
 
             // Create our objects
-            player = new Player(playerSprite, 224, 224);
+            //player = new Player(playerSprite, 224, 224);
 
             testLevel = new Level(this, "Levels/test_level.xml");
         }
@@ -81,7 +80,8 @@ namespace HackyRPG
                 Exit();
 
             // TODO: Add your update logic here
-            player.Update(gameTime, testLevel);
+            //player.Update(gameTime, testLevel);
+            testLevel.Update(gameTime);
 
             // We need to check the framerate
             float frameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -101,7 +101,7 @@ namespace HackyRPG
             spriteBatch.Begin();
 
             testLevel.Draw(spriteBatch);
-            player.Draw(spriteBatch);
+            //player.Draw(spriteBatch);
 
             spriteBatch.End();
 

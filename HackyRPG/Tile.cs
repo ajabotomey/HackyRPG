@@ -32,6 +32,19 @@ namespace HackyRPG
             }
         }
 
+        public bool Collidable
+        {
+            get
+            {
+                return collidable;
+            }
+
+            set
+            {
+                collidable = value;
+            }
+        }
+
         public Rectangle BoundBox
         {
             get
@@ -56,11 +69,6 @@ namespace HackyRPG
             }
 
             location = new Vector2(y * 32, x * 32);
-        }
-
-        public TileName GetTileValue()
-        {
-            return tileValue;
         }
 
         public int GetCost()

@@ -6,15 +6,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HackyRPG
 {
-    public class GameObject
+    public abstract class GameObject
     {
         public Texture2D sprite;
         public string name;
-        public Vector2 position;
+        private Vector2 position;
+        private string type;
 
-        public GameObject(Texture2D texture)
+        public GameObject(Texture2D texture, int x, int y)
         {
             sprite = texture;
+            position = new Vector2(x, y);
         }
 
         public Vector2 Position
@@ -38,24 +40,20 @@ namespace HackyRPG
             }
         }
 
-        public Vector2 bbCenter
+        public String Type
         {
-            get
-            {
-                return new Vector2(position.X - sprite.Width / 2, position.Y - sprite.Height / 2);
-            }
+            get;
+            set;
+        }
+
+        public virtual void Update(GameTime gameTime, Level level)
+        {
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, BoundBox, Color.White);
-        }
-
-        public bool AABBCollisionTest(GameObject gameObject)
-        {
-            
-
-            return false;
         }
     }
 }

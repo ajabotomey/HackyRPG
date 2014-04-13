@@ -42,10 +42,12 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="DynamicObject.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpriteSheet.cs" />
+    <Compile Include="StaticObject.cs" />
     <Compile Include="Tile.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +85,13 @@
     <None Include="Content\Background\grass.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Sprites\Dudette.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Sprites\Player.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Powerup.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\Tiles.xnb">

@@ -52,4 +52,24 @@
 		<row value="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" />
 	</grid>
 	<!-- Time to add some objects -->
+	<objects>
+		<player>
+			<position>
+				<x>224</x>
+				<y>224</y>
+			</position>
+			<sprite path="Sprites/Player" />
+			<object type="dynamic" />
+		</player>
+		<objectList>
+			<powerup>
+				<position>
+					<x>288</x>
+					<y>224</y>
+				</position>
+				<sprite path="Sprites/Powerup" />
+				<object type="dynamic" />
+			</powerup>
+		</objectList>
+	</objects>
 </level>

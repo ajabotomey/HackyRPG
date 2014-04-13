@@ -16,14 +16,32 @@ namespace HackyRPG
         private SpriteSheet groundSprites;
 
         int rows, columns;
+        private Player player;
 
         private List<Tile> tileMap;
+        private List<GameObject> objectMap;
 
         public List<Tile> TileMap
         {
             get
             {
                 return tileMap;
+            }
+        }
+
+        public List<GameObject> ObjectMap
+        {
+            get
+            {
+                return objectMap;
+            }
+        }
+
+        public Player CurrentPlayer
+        {
+            get
+            {
+                return player;
             }
         }
 
@@ -34,6 +52,7 @@ namespace HackyRPG
 
             // Create the tile map
             tileMap = new List<Tile>();
+            objectMap = new List<GameObject>();
 
             // Now load in the level file
             LoadLevel(filePath);
@@ -42,13 +61,6 @@ namespace HackyRPG
         public void LoadLevel(string filePath)
         {
             // Loading the level through XML
-            //FileStream fileStream = File.Open(contentManager.RootDirectory + "/" + filePath, FileMode.Open);
-            //StreamReader fileStreamReader = new StreamReader(fileStream);
-            //string xml = fileStreamReader.ReadToEnd();
-            //fileStreamReader.Close();
-            //fileStream.Close();
-            //XDocument doc = XDocument.Parse(xml);
-
             // XDocument doc = XDocument.Load("Application/" + contentManager.RootDirectory + "/" + filePath); // Vita version
             XDocument doc = XDocument.Load(contentManager.RootDirectory + "/" + filePath);
             
@@ -87,6 +99,43 @@ namespace HackyRPG
                 gridRows[i] = firstRow.FirstAttribute.Value;
             }
 
+            // Read in objects now. Rather than wait until we load the level completely, we need to create these objects now because they have a lot of information
+
+            // Read in the player first
+            XElement objectElement = doc.Element("level").Element("objects");
+            string playerSprite = objectElement.Element("player").Element("sprite").Attribute("path").Value;
+            Texture2D playerTexture = contentManager.Load<Texture2D>("Sprites/Player");
+            int playerPositionX = int.Parse(objectElement.Element("player").Element("position").Element("x").Value);
+            int playerPositionY = int.Parse(objectElement.Element("player").Element("position").Element("y").Value);
+            player = new Player(playerTexture, playerPositionX, playerPositionY);
+            objectMap.Add(player);
+
+            // Read in the other objects
+            XElement objectList = objectElement.Element("objectList");
+            int objCount = 0;
+            for (XElement firstObj = (XElement)objectList.FirstNode; firstObj != null; firstObj = (XElement)firstObj.NextNode, objCount++)
+            {
+                // Get the sprite path
+                string spritePath = firstObj.Element("sprite").Attribute("path").Value;
+                Texture2D texture = contentManager.Load<Texture2D>(spritePath);
+
+                // Get the origin position of the object
+                int positionX = int.Parse(firstObj.Element("position").Element("x").Value);
+                int positionY = int.Parse(firstObj.Element("position").Element("y").Value);
+
+                if (firstObj.Element("object").Attribute("type").Value == "static")
+                {
+                    StaticObject staticObject = new StaticObject(texture, positionX, positionY);
+                    objectMap.Add(staticObject);
+                }
+
+                if (firstObj.Element("object").Attribute("type").Value == "dynamic")
+                {
+                    DynamicObject dynamicObject = new DynamicObject(texture, positionX, positionY);
+                    objectMap.Add(dynamicObject);
+                }
+            }
+
             // Now that we have our raw data, time to load everything
             Texture2D groundFile = contentManager.Load<Texture2D>(spriteFile);
             groundSprites = new SpriteSheet(groundFile);
@@ -110,6 +159,23 @@ namespace HackyRPG
 
         public void Update(GameTime gameTime)
         {
+            foreach (GameObject go in objectMap)
+            {
+                go.Update(gameTime, this);
+            }
+
+            // Zero the velocity for each Dynamic Object
+            // This is done separately because we need the position to tell our characters to stop in static collision detection
+            foreach (GameObject go in ObjectMap)
+            {
+                if (go.Type == "static")
+                {
+                    continue;
+                }
+
+                DynamicObject d = (DynamicObject)go;
+                d.Velocity = Vector2.Zero;
+            }
             
         }
 
@@ -126,6 +192,11 @@ namespace HackyRPG
                 int tileValue = t.TileValue;
                 groundSprites.GetRectangle(ref tileValue, out source);
                 t.Draw(groundSprites.Texture, source, spriteBatch);
+            }
+
+            foreach (GameObject go in objectMap)
+            {
+                go.Draw(spriteBatch);
             }
         }
     }
