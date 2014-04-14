@@ -108,7 +108,6 @@ namespace HackyRPG
             int playerPositionX = int.Parse(objectElement.Element("player").Element("position").Element("x").Value);
             int playerPositionY = int.Parse(objectElement.Element("player").Element("position").Element("y").Value);
             player = new Player(playerTexture, playerPositionX, playerPositionY);
-            objectMap.Add(player);
 
             // Read in the other objects
             XElement objectList = objectElement.Element("objectList");
@@ -159,6 +158,8 @@ namespace HackyRPG
 
         public void Update(GameTime gameTime)
         {
+            player.Update(gameTime, this);
+
             foreach (GameObject go in objectMap)
             {
                 go.Update(gameTime, this);
@@ -176,7 +177,6 @@ namespace HackyRPG
                 DynamicObject d = (DynamicObject)go;
                 d.Velocity = Vector2.Zero;
             }
-            
         }
 
         public void UnloadLevel()
@@ -198,6 +198,8 @@ namespace HackyRPG
             {
                 go.Draw(spriteBatch);
             }
+
+            player.Draw(spriteBatch);
         }
     }
 }

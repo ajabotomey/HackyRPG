@@ -64,8 +64,8 @@
 		<objectList>
 			<powerup>
 				<position>
-					<x>288</x>
-					<y>224</y>
+					<x>224</x>
+					<y>256</y>
 				</position>
 				<sprite path="Sprites/Powerup" />
 				<object type="dynamic" />
