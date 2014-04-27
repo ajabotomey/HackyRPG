@@ -1,0 +1,11 @@
+Ideas for RPG Game
+	- Tile based
+	- You are legendary hero that has lost memory after an epic battle
+		- You start by saving a small child from a monster
+	- Slowly re-learn abilities.
+	- Party based with various members being interchanged
+	- Classes (not available to hero as he has abilities of all classes)
+		- Warrior
+		- Mage
+		- Archer
+		- 

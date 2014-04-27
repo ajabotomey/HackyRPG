@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackyRPG", "HackyRPG\HackyRPG.csproj", "{766E57C0-7194-421E-A089-16F4E203D658}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditor", "MapEditor\MapEditor.csproj", "{ABA950AA-B7A3-40A2-A93E-56F163E802CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,12 @@ Global
 		{766E57C0-7194-421E-A089-16F4E203D658}.Release|Any CPU.ActiveCfg = Release|x86
 		{766E57C0-7194-421E-A089-16F4E203D658}.Release|x86.ActiveCfg = Release|x86
 		{766E57C0-7194-421E-A089-16F4E203D658}.Release|x86.Build.0 = Release|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Debug|x86.ActiveCfg = Debug|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Debug|x86.Build.0 = Debug|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Release|Any CPU.ActiveCfg = Release|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Release|x86.ActiveCfg = Release|x86
+		{ABA950AA-B7A3-40A2-A93E-56F163E802CC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

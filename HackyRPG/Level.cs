@@ -17,6 +17,7 @@ namespace HackyRPG
 
         int rows, columns;
         private Player player;
+        private Dudette dudette;
 
         private List<Tile> tileMap;
         private List<GameObject> objectMap;
@@ -104,10 +105,17 @@ namespace HackyRPG
             // Read in the player first
             XElement objectElement = doc.Element("level").Element("objects");
             string playerSprite = objectElement.Element("player").Element("sprite").Attribute("path").Value;
-            Texture2D playerTexture = contentManager.Load<Texture2D>("Sprites/Player");
+            Texture2D playerTexture = contentManager.Load<Texture2D>(playerSprite);
             int playerPositionX = int.Parse(objectElement.Element("player").Element("position").Element("x").Value);
             int playerPositionY = int.Parse(objectElement.Element("player").Element("position").Element("y").Value);
             player = new Player(playerTexture, playerPositionX, playerPositionY);
+
+            // Read in the dudette for now
+            string dudetteSprite = objectElement.Element("dudette").Element("sprite").Attribute("path").Value;
+            Texture2D dudetteTexture = contentManager.Load<Texture2D>(dudetteSprite);
+            int dudettePositionX = int.Parse(objectElement.Element("dudette").Element("position").Element("x").Value);
+            int dudettePositionY = int.Parse(objectElement.Element("dudette").Element("position").Element("y").Value);
+            dudette = new Dudette(dudetteTexture, dudettePositionX, dudettePositionY);
 
             // Read in the other objects
             XElement objectList = objectElement.Element("objectList");
@@ -159,6 +167,7 @@ namespace HackyRPG
         public void Update(GameTime gameTime)
         {
             player.Update(gameTime, this);
+            dudette.Update(gameTime, this);
 
             foreach (GameObject go in objectMap)
             {

@@ -61,6 +61,14 @@
 			<sprite path="Sprites/Player" />
 			<object type="dynamic" />
 		</player>
+		<dudette>
+			<position>
+				<x>640</x>
+				<y>288</y>
+			</position>
+			<sprite path="Sprites/Dudette" />
+			<object type="dynamic" />
+		</dudette>
 		<objectList>
 			<powerup>
 				<position>
