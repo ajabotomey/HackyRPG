@@ -30,3 +30,4 @@ C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\AJ\Desktop\HackyRPG\HackyRPG\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Sprites\Dudette.xnb
 C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\Sprites\Powerup.xnb
+C:\Users\AJ\Desktop\HackyRPG\HackyRPG\bin\WindowsGL\Debug\Content\ConsoleFont.xnb

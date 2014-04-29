@@ -45,6 +45,8 @@ namespace MapEditor
         {
             spriteBatch.Begin();
 
+            GraphicsDevice.Clear(Color.Black);
+
             // Draw XNA related stuff here
             //Console.WriteLine("Drawing here");
             if (currentLevel != null)

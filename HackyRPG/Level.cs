@@ -19,6 +19,7 @@ namespace HackyRPG
         private Player player;
         private Dudette dudette;
 
+        private Dictionary<int, TileDetails> tileList;
         private List<Tile> tileMap;
         private List<GameObject> objectMap;
 
@@ -52,6 +53,7 @@ namespace HackyRPG
             contentManager.RootDirectory = "Content";
 
             // Create the tile map
+            tileList = new Dictionary<int, TileDetails>();
             tileMap = new List<Tile>();
             objectMap = new List<GameObject>();
 
@@ -71,20 +73,52 @@ namespace HackyRPG
             XElement spritesheet = doc.Element("level").Element("spritesheet");
             string spriteFile = spritesheet.FirstAttribute.Value;
 
-            // Now the specific tiles from the file
-            XElement grassTile = (from el in spritesheet.Elements() where (string)el.Attribute("name") == "grass" select el).FirstOrDefault();
-            int grassX = int.Parse(grassTile.Element("x").Value);
-            int grassY = int.Parse(grassTile.Element("y").Value);
-            int grassWidth = int.Parse(grassTile.Element("width").Value);
-            int grassHeight = int.Parse(grassTile.Element("height").Value);
-            int grassValue = int.Parse(grassTile.Element("value").FirstAttribute.Value);
+            //// Now the specific tiles from the file
+            //XElement grassTile = (from el in spritesheet.Elements() where (string)el.Attribute("name") == "grass" select el).FirstOrDefault();
+            //int grassX = int.Parse(grassTile.Element("x").Value);
+            //int grassY = int.Parse(grassTile.Element("y").Value);
+            //int grassWidth = int.Parse(grassTile.Element("width").Value);
+            //int grassHeight = int.Parse(grassTile.Element("height").Value);
+            //int grassValue = int.Parse(grassTile.Element("value").FirstAttribute.Value);
+            //int grassCost = int.Parse(grassTile.Element("heuristic").FirstAttribute.Value);
+            //bool grassCollidable = Convert.ToBoolean(grassTile.Element("collidable").FirstAttribute.Value);
 
-            XElement waterTile = (from el in spritesheet.Elements() where (string)el.Attribute("name") == "water" select el).FirstOrDefault();
-            int waterX = int.Parse(waterTile.Element("x").Value);
-            int waterY = int.Parse(waterTile.Element("y").Value);
-            int waterWidth = int.Parse(waterTile.Element("width").Value);
-            int waterHeight = int.Parse(waterTile.Element("height").Value);
-            int waterValue = int.Parse(waterTile.Element("value").FirstAttribute.Value);
+            //XElement waterTile = (from el in spritesheet.Elements() where (string)el.Attribute("name") == "water" select el).FirstOrDefault();
+            //int waterX = int.Parse(waterTile.Element("x").Value);
+            //int waterY = int.Parse(waterTile.Element("y").Value);
+            //int waterWidth = int.Parse(waterTile.Element("width").Value);
+            //int waterHeight = int.Parse(waterTile.Element("height").Value);
+            //int waterValue = int.Parse(waterTile.Element("value").FirstAttribute.Value);
+            //int waterCost = int.Parse(grassTile.Element("heuristic").FirstAttribute.Value);
+            //bool waterCollidable = Convert.ToBoolean(waterTile.Element("collidable").FirstAttribute.Value);
+
+            // Load the tile sheet first
+            Texture2D groundFile = contentManager.Load<Texture2D>(spriteFile);
+            groundSprites = new SpriteSheet(groundFile);
+
+            // Interating through tiles
+            for (XElement firstTile = (XElement)spritesheet.FirstNode; firstTile != null; firstTile= (XElement)firstTile.NextNode)
+            {
+                string tileName = firstTile.Attribute("name").Value;
+                int tileX = int.Parse(firstTile.Element("x").Value);
+                int tileY = int.Parse(firstTile.Element("y").Value);
+                int tileWidth = int.Parse(firstTile.Element("size").Value);
+                int tileHeight = tileWidth;
+                int tileValue = int.Parse(firstTile.Element("value").FirstAttribute.Value);
+                int tileCost = int.Parse(firstTile.Element("heuristic").FirstAttribute.Value);
+                bool collidable = Convert.ToBoolean(firstTile.Element("collidable").FirstAttribute.Value);
+
+                // Add a reference in the spritesheet to the tile
+                groundSprites.AddSourceSprite(tileValue, new Rectangle(tileX, tileY, tileWidth, tileHeight));
+
+                // Add the details to a list
+                TileDetails details = new TileDetails();
+                details.Name = tileName;
+                details.Cost = tileCost;
+                details.Collidable = collidable;
+
+                tileList.Add(tileValue, details);
+            };
 
             // Now to get the size
             XElement sizeElement = doc.Element("level").Element("size");
@@ -143,12 +177,6 @@ namespace HackyRPG
                 }
             }
 
-            // Now that we have our raw data, time to load everything
-            Texture2D groundFile = contentManager.Load<Texture2D>(spriteFile);
-            groundSprites = new SpriteSheet(groundFile);
-            groundSprites.AddSourceSprite((int)TileName.Grass, new Rectangle(grassX, grassY, grassWidth, grassHeight));
-            groundSprites.AddSourceSprite((int)TileName.Water, new Rectangle(waterX, waterY, waterWidth, waterHeight));
-
             // Time to populate with tiles
             for (int j = 0; j < rows; j++)
             {
@@ -158,7 +186,11 @@ namespace HackyRPG
 
                 for (int k = 0; k < bits.Length; k++)
                 {
-                    Tile newTile = new Tile(j, k, int.Parse(bits[k]));
+                    // Get the details from the tile list
+                    TileDetails details = null;
+                    tileList.TryGetValue(int.Parse(bits[k]), out details);
+
+                    Tile newTile = new Tile(j, k, int.Parse(bits[k]), details.Cost, details.Collidable);
                     tileMap.Add(newTile);
                 }
             }

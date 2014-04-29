@@ -21,3 +21,4 @@ C:\Users\AJ\Desktop\HackyRPG\MapEditor\bin\Debug\Lidgren.Network.dll
 C:\Users\AJ\Desktop\HackyRPG\MapEditor\bin\Debug\Tao.Sdl.dll
 C:\Users\AJ\Desktop\HackyRPG\MapEditor\bin\Debug\HackyRPG.pdb
 C:\Users\AJ\Desktop\HackyRPG\MapEditor\obj\x86\Debug\MapEditor.EditorForm.resources
+C:\Users\AJ\Desktop\HackyRPG\MapEditor\bin\Debug\Content\ConsoleFont.xnb

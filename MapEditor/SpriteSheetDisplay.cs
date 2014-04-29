@@ -74,6 +74,8 @@ namespace MapEditor
         {
             spriteBatch.Begin();
 
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
             Console.WriteLine("Drawing here");
 
             if (spritesheet != null)

@@ -72,6 +72,9 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\ConsoleFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Levels\test_level.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -5,18 +5,18 @@
 		<sprite name="grass">
 			<x>32</x>
 			<y>0</y>
-			<width>32</width>
-			<height>32</height>
+			<size>32</size>
 			<value number = "0" />
 			<heuristic cost = "1" />
+			<collidable value = 'false' />
 		</sprite>
 		<sprite name="water">
 			<x>128</x>
 			<y>0</y>
-			<width>32</width>
-			<height>32</height>
+			<size>32</size>
 			<value number = "1" />
 			<heuristic cost = "1000" />
+			<collidable value = 'true' />
 		</sprite>
 	</spritesheet>
 	<!-- The size of the level -->

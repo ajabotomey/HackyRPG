@@ -37,6 +37,8 @@ namespace HackyRPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             base.Initialize();
         }
@@ -47,9 +49,6 @@ namespace HackyRPG
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
             // Create our textures
             Texture2D playerSprite = Content.Load<Texture2D>("Sprites/Player");

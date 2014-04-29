@@ -11,6 +11,31 @@ namespace HackyRPG
         Water = 1
     }
 
+    public class TileDetails
+    {
+        private string name;
+        private int heuristicCost;
+        private bool collidable;
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public int Cost
+        {
+            get;
+            set;
+        }
+
+        public bool Collidable
+        {
+            get;
+            set;
+        }
+    }
+
     public class Tile
     {
         private int heuristicCost;
@@ -53,20 +78,23 @@ namespace HackyRPG
             }
         }
 
-        public Tile(int x, int y, int tileType)
+        public Tile(int x, int y, int tileType, int cost, bool collidable)
         {
             tileValue = (TileName)Enum.ToObject(typeof(TileName), tileType);
 
-            if (tileValue == TileName.Water)
-            {
-                heuristicCost = 100;
-                collidable = true;
-            }
-            else
-            {
-                heuristicCost = 1;
-                collidable = false;
-            }
+            //if (tileValue == TileName.Water)
+            //{
+            //    heuristicCost = 100;
+            //    collidable = true;
+            //}
+            //else
+            //{
+            //    heuristicCost = 1;
+            //    collidable = false;
+            //}
+
+            heuristicCost = cost;
+            this.collidable = collidable;
 
             location = new Vector2(y * 32, x * 32);
         }

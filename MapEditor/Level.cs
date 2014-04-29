@@ -17,7 +17,21 @@ namespace MapEditor
 
         int rows, columns;
 
+        private Vector2 levelDimensions;
         private List<Tile> tileMap;
+
+        public Vector2 LevelDimensions
+        {
+            get
+            {
+                return levelDimensions;
+            }
+
+            set
+            {
+                levelDimensions = value;
+            }
+        }
 
         public List<Tile> TileMap
         {
@@ -84,6 +98,8 @@ namespace MapEditor
             groundSprites = new SpriteSheet(groundFile);
             groundSprites.AddSourceSprite((int)TileName.Grass, new Rectangle(grassX, grassY, grassWidth, grassHeight));
             groundSprites.AddSourceSprite((int)TileName.Water, new Rectangle(waterX, waterY, waterWidth, waterHeight));
+
+            levelDimensions = new Vector2(columns, rows);
 
             // Time to populate with tiles
             for (int j = 0; j < rows; j++)
